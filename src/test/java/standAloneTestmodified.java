@@ -55,7 +55,7 @@ public class standAloneTestmodified {
         reuse.scrollWebPage("700");
         paymentPage.clickOnPlaceOrder();
        Assert.assertTrue(driver.findElement(By.cssSelector(".hero-primary")).getText().equalsIgnoreCase("THANKYOU FOR THE ORDER."));
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         driver.quit();
 
