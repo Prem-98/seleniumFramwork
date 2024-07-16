@@ -24,13 +24,18 @@ public class LoginPage extends reuse {
     @FindBy(id="login")
     WebElement loginBtn;
 
+    @FindBy(css = "[class*='flyInOut']")
+    WebElement error;
+
 
     public void loginToWebpage(String username,String pass){
         email.sendKeys(username);
         password.sendKeys(pass);
         loginBtn.click();
-
-
+    }
+    public String errorValidation(){
+        waitForWebElementToAppear(error);
+        return error.getText();
     }
 
 }

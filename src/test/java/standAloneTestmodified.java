@@ -3,6 +3,7 @@ import PageObjects.LoginPage;
 import PageObjects.PaymentPage;
 import PageObjects.cartPage;
 import ReusableComponents.reuse;
+import TestComponents.BaseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,26 +14,21 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
-public class standAloneTestmodified {
-    public static void main(String[] args) throws InterruptedException {
-        WebDriverManager.edgedriver().setup();
-        WebDriver driver=new ChromeDriver();
-        driver.manage().window().maximize();
-        ChromeOptions chromeOptions=new ChromeOptions();
-        chromeOptions.addArguments("--remote-allow-origins=*");
-        chromeOptions.addArguments("--disable-notifications");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+public class standAloneTestmodified extends BaseTest {
+
+    @Test
+    public void addToCart() throws IOException, InterruptedException {
         LoginPage loginPage=new LoginPage(driver);
         CatlogPage catlogPage=new CatlogPage(driver);
         reuse reuse=new reuse(driver);
         cartPage cartPage=new cartPage(driver);
         PaymentPage paymentPage=new PaymentPage(driver);
-
-        driver.get("https://rahulshettyacademy.com/client");
         String prod="ZARA COAT 3";
 
         loginPage.loginToWebpage("test0211@gmail.com","Prem@1998");
@@ -56,8 +52,6 @@ public class standAloneTestmodified {
         paymentPage.clickOnPlaceOrder();
        Assert.assertTrue(driver.findElement(By.cssSelector(".hero-primary")).getText().equalsIgnoreCase("THANKYOU FOR THE ORDER."));
         Thread.sleep(2000);
-
-        driver.quit();
 
     }
 }

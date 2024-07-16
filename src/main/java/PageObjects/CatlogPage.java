@@ -40,6 +40,6 @@ public class CatlogPage extends reuse {
         WebElement product=waitForProductsToAppear().stream().filter(item->item.findElement(By.cssSelector("b")).getText().equals(productname)).findFirst().orElse(null);
         product.findElement(addBtn).click();
         waitForElementToAppear(tostermsg);
-        waitForElementToDisappear(animation);
+        waitForWebElementToDisappear(animation);
     }
 }
