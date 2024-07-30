@@ -13,6 +13,8 @@ import java.time.Duration;
 import java.util.Properties;
 
 public class BaseTest {
+    // this class file contains the basic methods which will be used in all the test class files
+    // like intiatization of dirver , launching the website , killing the driver after the test case is done
     public WebDriver driver;
     public WebDriver initializDriver() throws IOException {
 

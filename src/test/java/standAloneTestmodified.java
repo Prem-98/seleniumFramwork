@@ -1,7 +1,4 @@
-import PageObjects.CatlogPage;
-import PageObjects.LoginPage;
-import PageObjects.PaymentPage;
-import PageObjects.cartPage;
+import PageObjects.*;
 import ReusableComponents.reuse;
 import TestComponents.BaseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -52,6 +49,15 @@ public class standAloneTestmodified extends BaseTest {
         paymentPage.clickOnPlaceOrder();
        Assert.assertTrue(driver.findElement(By.cssSelector(".hero-primary")).getText().equalsIgnoreCase("THANKYOU FOR THE ORDER."));
         Thread.sleep(2000);
+
+    }
+    @Test (dependsOnMethods = {"addToCart"})
+    public void orderHistory(){
+        LoginPage loginPage=new LoginPage(driver);
+        OrderPage orderPage=new OrderPage(driver);
+        loginPage.loginToWebpage("test0211@gmail.com","Prem@1998");
+        orderPage.goToOrders();
+        orderPage.validateOrders("ZARA COAT 3");
 
     }
 }

@@ -10,6 +10,8 @@ import org.w3c.dom.html.HTMLInputElement;
 import java.time.Duration;
 
 public class reuse {
+    //This is the class file contains  all locators and methods which we will be using in our page files . These locators and methods are at
+    // global level so that we can just call this class and use the methods and locators present in this class
     WebDriver driver;
 
     public reuse(WebDriver driver){
@@ -19,6 +21,9 @@ public class reuse {
 
    @FindBy(css = "[routerlink*='cart']")
    WebElement cart;
+
+    @FindBy(css = "[routerlink='/dashboard/myorders']")
+    WebElement orders;
 
     public void waitForElementToAppear(By element){
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -37,6 +42,9 @@ public class reuse {
     public void goToCart(){
         cart.click();
 
+    }
+    public void goToOrders(){
+        orders.click();
     }
     public void scrollWebPage(String scroll){
         JavascriptExecutor js=(JavascriptExecutor) driver;
