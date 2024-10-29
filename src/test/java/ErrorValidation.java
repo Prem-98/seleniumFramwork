@@ -28,7 +28,7 @@ public class ErrorValidation extends BaseTest {
         cartPage cartPage=new cartPage(driver);
         PaymentPage paymentPage=new PaymentPage(driver);
         String prod="ZARA pen 3";
-        loginPage.loginToWebpage("test021198@gmail.com","Prem@1998");
+        loginPage.loginToWebpage("test0211@gmail.com","Prem@1998");
         catlogPage.addProductToCart(prod);
         reuse.goToCart();
 }

@@ -11,24 +11,26 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
 
 public class standAloneTestmodified extends BaseTest {
 
-    @Test
-    public void addToCart() throws IOException, InterruptedException {
+    @Test (dataProvider = "getDataMap")
+    public void addToCart(HashMap<String,String>input) throws IOException, InterruptedException {
         LoginPage loginPage=new LoginPage(driver);
         CatlogPage catlogPage=new CatlogPage(driver);
         reuse reuse=new reuse(driver);
         cartPage cartPage=new cartPage(driver);
         PaymentPage paymentPage=new PaymentPage(driver);
-        String prod="ZARA COAT 3";
+        String prod=input.get("product");
 
-        loginPage.loginToWebpage("test0211@gmail.com","Prem@1998");
+        loginPage.loginToWebpage(input.get("email"),input.get("pass"));
 
 
         catlogPage.addProductToCart(prod);
@@ -60,4 +62,25 @@ public class standAloneTestmodified extends BaseTest {
         orderPage.validateOrders("ZARA COAT 3");
 
     }
+
+    @DataProvider
+    public Object [][] getDataMap(){
+        HashMap<String,String>map=new HashMap<String,String>();
+        map.put("email","test0211@gmail.com");
+        map.put("pass","Prem@1998");
+        map.put("product","ZARA COAT 3");
+
+        HashMap<String,String>map2=new HashMap<String,String>();
+        map2.put("email","test0211@gmail.com");
+        map2.put("pass","Prem@1998");
+        map2.put("product","ADIDAS ORIGINAL");
+
+            return new Object [][]{{map},{map2}};
+
 }
+    @DataProvider
+    public Object [][] getDataSimple(){
+
+        return new Object [][]{{"test0211@gmail.com","Prem@1998","ZARA COAT 3"},{"test0211@gmail.com","Prem@1998","ADIDAS ORIGINAL"}};
+
+    }}
