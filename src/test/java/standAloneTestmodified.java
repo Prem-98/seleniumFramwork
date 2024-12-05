@@ -64,7 +64,9 @@ public class standAloneTestmodified extends BaseTest {
     }
 
     @DataProvider
-    public Object [][] getDataMap(){
+    public Object [][] getDataMap() throws IOException {
+//         if we want to use HashMap below is the procces to create and hashmap and provide the data
+
         HashMap<String,String>map=new HashMap<String,String>();
         map.put("email","test0211@gmail.com");
         map.put("pass","Prem@1998");
@@ -74,9 +76,10 @@ public class standAloneTestmodified extends BaseTest {
         map2.put("email","test0211@gmail.com");
         map2.put("pass","Prem@1998");
         map2.put("product","ADIDAS ORIGINAL");
-
             return new Object [][]{{map},{map2}};
-
+//  -------------- if we want to get the data from a jason file then follow the below process----------
+//        List<HashMap<String,String>> data=readJasonData(System.getProperty("user.dir")+"src//main//java//Data//subitorderdata.json");
+//        return new Object [][]{{data.get(0)},{data.get(1)}};
 }
     @DataProvider
     public Object [][] getDataSimple(){

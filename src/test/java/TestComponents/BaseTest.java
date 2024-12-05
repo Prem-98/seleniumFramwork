@@ -1,15 +1,27 @@
 package TestComponents;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
+//import org.apache.log4j.BasicConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
 public class BaseTest {
@@ -44,4 +56,21 @@ public class BaseTest {
     public void tearDown(){
         driver.close();
     }
+    public List<HashMap<String, String>> readJasonData(String filePath) throws IOException {
+
+        //below we are reading all the data in jason file to a string
+        String jasonContent= FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
+
+        //now here after reading the data into a string we are placing it into a Hasmap
+        //Using Jacson Databind
+
+        ObjectMapper mapper=new ObjectMapper();
+
+        List<HashMap<String,String>> data=mapper.readValue(jasonContent, new TypeReference<List<HashMap<String, String>>>() {
+        });
+        return data;
+
+
+    }
+
 }
